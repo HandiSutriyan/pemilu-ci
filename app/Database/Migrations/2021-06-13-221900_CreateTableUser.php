@@ -4,45 +4,32 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class CreateTableDpt extends Migration
+class CreateTableUser extends Migration
 {
 	public function up()
 	{
 		$this->forge->addField([
-			'pemilih_id'          => [
+			'user_id'          => [
 					'type'           => 'INT',
 					'constraint'     => 5,
 					'unsigned'       => true,
 					'auto_increment' => true,
 			],
-			'event_id'          => [
-				'type'           => 'INT',
-				'constraint'     => 5,
-				'unsigned'       => true,
-			],
-			'username'       => [
+			'user_name'       => [
 					'type'       => 'VARCHAR',
 					'constraint' => '255',
 			],
-			'name'       => [
+			'user_email'       => [
 				'type'       => 'VARCHAR',
 				'constraint' => '100',
 			],
-			'ptk'       => [
-				'type'       => 'VARCHAR',
-				'constraint' => '255',
-			],
-			'angkatan' => [
+			'user_role' => [
 				'type' => 'VARCHAR',
 				'constraint' => '10',
 			],
 			'user_password' => [
 				'type' => 'VARCHAR',
-				'constraint' => '255',
-			],
-			'vote_status'          => [
-				'type'           => 'BOOLEAN',
-				'default'        => false,
+				'constraint' => '225',
 			],
 			'created_at' => [
 				'type' => 'DATETIME',
@@ -53,12 +40,12 @@ class CreateTableDpt extends Migration
 				'null' => true
 			]
 		]);
-		$this->forge->addKey('pemilih_id', true);
-		$this->forge->createTable('tbl_dpt');
+		$this->forge->addKey('user_id', true);
+		$this->forge->createTable('user');
 	}
 
 	public function down()
 	{
-		$this->forge->dropTable('tbl_dpt');
+		$this->forge->dropTable('user');
 	}
 }
