@@ -2,50 +2,65 @@
 
 namespace App\Controllers;
 use App\Models\DptModel;
+use App\Models\UserModel;
 
 class Login extends BaseController
 {
-    protected $dptModel;
-    protected $session;
-    public function __construct(){
-        $this->dptModel = new DptModel;
-        $this->session = session();
+	public function index()
+	{
+		return view('login');
     }
-
-    public function index(){
-		return view('login-admin');
-    }
-
-    public function process(){
-        echo "fungsi proses";
-        /*
+    
+    public function auth()
+    {
+        $session = session();
+        $dpt_model = new DptModel();
+        $user_model = new UserModel();
         $username = $this->request->getVar('user_name');
         $password = $this->request->getVar('user_password');
-        $data = $this->dptModel->where('username', $username)->first();
+        $is_pemilih = $dpt_model->where('username',  $username)->first();
+        $is_user = $user_model->where(['username' => $username, 'user_role'=> 'admin'])->first();
+        //dd($is_pemilih);
+        if($is_user){
+            $data = $is_user;
+        }else{
+            $data = $is_pemilih;
+        }
+
         if($data){
             $pass = $data['user_password'];
             $verify_pass = password_verify($password, $pass);
+
+            if($is_user){
+                $id = $data['user_id'];
+                $redirect = '/admin';
+            }else{
+                $id = $data['pemilih_id'];
+                $redirect = '/vote';
+            }
+
             if($verify_pass){
                 $ses_data = [
-                    'pemilih_id'       => $data['pemilih_id'],
+                    'user_id'       => $id,
                     'user_name'     => $data['username'],
                     'logged_in'     => TRUE
                 ];
-                $this->session->set($ses_data);
-                return redirect()->to('/vote');
+                $session->set($ses_data);
+                return redirect()->to($redirect);
             }else{
-                $this->session->setFlashdata('msg', 'Wrong Password');
+                $session->setFlashdata('msg', 'Wrong Password');
                 return redirect()->to('/login');
             }
         }else{
-            $this->session->setFlashdata('msg', 'Email not Found');
-            return redirect()->to('/vote');
+            $session->setFlashdata('msg', 'User not Found');
+            return redirect()->to('/login');
         }
-        */
     }
+
     public function logout()
     {
-        $this->session->destroy();
+        $session = session();
+        $session->destroy();
         return redirect()->to('/login');
     }
 }

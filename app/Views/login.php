@@ -14,22 +14,37 @@
         <div class="row justify-content-md-center">
             <div class="login border border-light">
                 <div class="col">
+<<<<<<< HEAD
                     <img class="navbar-brand brand-logo" src=<?= base_url("assets/images/surya.jpg")?>>
+=======
+                    <img class="navbar-brand brand-logo" src=<?= base_url("assets/images/surya.jpg") ?>>
+>>>>>>> dev
                     <span class="d-xs-none"><?= SITE_NAME ?></span>
                     <h1>Sign In</h1>
                         <?php if(session()->getFlashdata('msg')):?>
                             <div class="alert alert-danger"><?= session()->getFlashdata('msg') ?></div>
                         <?php endif;?>
+<<<<<<< HEAD
                         <form action="/login/auth" method="POST">
                             <div class="mb-3">
                                 <label for="InputForEmail" class="form-label">Username</label>
+=======
+                        <form action="/login/auth" method="post">
+                        <?= csrf_field() ?>
+                            <div class="mb-3">
+                                <label for="InputForEmail" class="form-label">Email address</label>
+>>>>>>> dev
                                 <input type="text" name="user_name" class="form-control" id="InputForEmail">
                             </div>
                             <div class="mb-3">
                                 <label for="InputForPassword" class="form-label">Password</label>
                                 <input type="password" name="user_password" class="form-control" id="InputForPassword">
                             </div>
+<<<<<<< HEAD
                             <input type="submit" class="btn btn-primary" value="Login">
+=======
+                            <button type="submit" class="btn btn-primary">Login</button>
+>>>>>>> dev
                             <a href="/" class="btn btn-secondary">Kembali</a>
                         </form>
                 </div>
