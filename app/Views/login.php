@@ -20,7 +20,7 @@
                         <?php if(session()->getFlashdata('msg')):?>
                             <div class="alert alert-danger"><?= session()->getFlashdata('msg') ?></div>
                         <?php endif;?>
-                        <form action="/login/process" method="post">
+                        <form action="/login/auth" method="POST">
                             <div class="mb-3">
                                 <label for="InputForEmail" class="form-label">Username</label>
                                 <input type="text" name="user_name" class="form-control" id="InputForEmail">
@@ -29,7 +29,7 @@
                                 <label for="InputForPassword" class="form-label">Password</label>
                                 <input type="password" name="user_password" class="form-control" id="InputForPassword">
                             </div>
-                            <button type="submit" class="btn btn-primary">Login</button>
+                            <input type="submit" class="btn btn-primary" value="Login">
                             <a href="/" class="btn btn-secondary">Kembali</a>
                         </form>
                 </div>

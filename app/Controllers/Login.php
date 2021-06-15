@@ -13,10 +13,12 @@ class Login extends BaseController
     }
 
     public function index(){
-		return view('login');
+		return view('login-admin');
     }
 
     public function process(){
+        echo "fungsi proses";
+        /*
         $username = $this->request->getVar('user_name');
         $password = $this->request->getVar('user_password');
         $data = $this->dptModel->where('username', $username)->first();
@@ -37,8 +39,9 @@ class Login extends BaseController
             }
         }else{
             $this->session->setFlashdata('msg', 'Email not Found');
-            return redirect()->to('/login');
+            return redirect()->to('/vote');
         }
+        */
     }
     public function logout()
     {
