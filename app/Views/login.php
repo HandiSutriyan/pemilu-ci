@@ -21,9 +21,10 @@
                             <div class="alert alert-danger"><?= session()->getFlashdata('msg') ?></div>
                         <?php endif;?>
                         <form action="/login/auth" method="post">
+                        <?= csrf_field() ?>
                             <div class="mb-3">
                                 <label for="InputForEmail" class="form-label">Email address</label>
-                                <input type="email" name="user_email" class="form-control" id="InputForEmail">
+                                <input type="text" name="user_name" class="form-control" id="InputForEmail">
                             </div>
                             <div class="mb-3">
                                 <label for="InputForPassword" class="form-label">Password</label>

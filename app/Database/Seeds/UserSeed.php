@@ -10,7 +10,7 @@ class UserSeed extends Seeder
 	public function run()
 	{
 		$data = [
-			'user_name' => 'Admin',
+			'username' => 'Admin',
 			'user_email'    => 'pemilu@fmkk.web.id',
 			'user_role' => 'admin',
 			'user_password' => password_hash('admin', PASSWORD_DEFAULT),
