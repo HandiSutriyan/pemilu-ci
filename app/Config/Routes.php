@@ -36,6 +36,11 @@ $routes->get('/', 'Home::index');
 $routes->get('/logout', 'Login::logout');
 $routes->get('/admin', 'Admin/Dashboard::index');
 
+$routes->get('/admin/events/create', 'Admin/Events::create');
+$routes->delete('/admin/events/(:num)', 'Admin/Events::delete/$1');
+$routes->get('/admin/events/(:segment)', 'Admin\Events::detail/$1');
+$routes->get('/admin/events/update/(:num)', 'Admin\Events::update/$1');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

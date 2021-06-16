@@ -9,5 +9,9 @@ class EventModel extends Model
 	protected $table = 'events';
 	protected $primaryKey = 'event_id';
 	protected $useTimestamps = true;
-    protected $allowedFields = ['name','desc','event_start','event_stop','created_by'];
+	protected $allowedFields = ['name','desc','event_start','event_stop','created_by'];
+	
+	public function getEvent($id){
+    	return $this->where(['event_id'=> $id])->first();
+    }
 }

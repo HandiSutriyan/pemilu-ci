@@ -3,6 +3,9 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
+            <?php if(session()->getFlashdata('msg')):?>
+                <div class="alert alert-info"><?= session()->getFlashdata('msg') ?></div>
+            <?php endif;?>
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title m-b-0">Tabel Acara</h5> <br>
@@ -31,16 +34,17 @@
                         <td><?= $d["event_start"] ?></td>
                         <td><?= $d["event_stop"] ?></td>
                         <td>
-                            <a href='/admin/events/update'>
-                                <button type="button" class="btn btn-info btn-sm">
-                                <i class="fas fa-cogs"></i>
-                                </button>
-                            </a>
-                            <a href='#'>
-                                <button type="button" class="btn btn-danger btn-sm">
-                                <i class="fas fa-trash-alt"></i>
-                                </button>
-                            </a>
+                            <!-- SPOOFING -->
+							<form method="post" class="d-inline" action="events/delete/<?= $d['event_id'] ?>" >
+								<?= csrf_field() ?>
+                                <a href='events/<?= $d['event_id'] ?>'>
+                                    <button type="button" class="btn btn-info btn-sm">
+                                    <i class="fas fa-cogs"></i>
+                                    </button>
+                                </a>
+								<input type="hidden" name="_method" value="DELETE">
+								<button class="btn btn-danger btn-sm" type="submit" onclick="return confirm('Apakah Anda yakin akan menghapus <?= $d['name'] ?> ?');"> <i class="fas fa-trash-alt"></i> </button> 
+							</form>
                         </td>
                     </tr>
                     <?php
