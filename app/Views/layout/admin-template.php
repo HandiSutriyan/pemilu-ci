@@ -15,6 +15,8 @@
     <link href=<?= base_url("assets/libs/flot/css/float-chart.css")?> rel="stylesheet">
     <!-- Custom CSS -->
     <link href=<?= base_url("dist/css/style.min.css")?> rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" type="text/css" href=<?= base_url("assets/libs/quill/dist/quill.snow.css") ?>>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -102,6 +104,7 @@
     <!-- ============================================================== -->
     <!-- End Wrapper -->
     <!-- ============================================================== -->
+</body>
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->
@@ -126,9 +129,24 @@
     <script src=<?=base_url("assets/libs/flot/jquery.flot.time.js")?>></script>
     <script src=<?=base_url("assets/libs/flot/jquery.flot.stack.js")?>></script>
     <script src=<?=base_url("assets/libs/flot/jquery.flot.crosshair.js")?>></script>
+    <script src=<?=base_url("assets/libs/flot/jquery.flot.barlabels.js")?>></script>
     <script src=<?=base_url("assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js")?>></script>
     <script src=<?=base_url("dist/js/pages/chart/chart-page-init.js") ?>></script>
+    <script src=<?= base_url("assets/libs/chart/turning-series.js") ?>></script>
+    <!-- Date Picker -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
-</body>
-
+    <script src=<?= base_url("assets/libs/quill/dist/quill.min.js") ?>></script>
+    <script>
+        /*datepicker*/
+        $(".date-selector").flatpickr({
+                enableTime: true,
+                dateFormat: "Y-m-d H:i:s",
+        });
+        var quill = new Quill('#editor', {
+            theme: 'snow'
+        });
+    </script>
+    <!-- CUSTOM SCRIPT FROM CERTAIN VIEW -->
+    <?= $this->renderSection('script') ?>
 </html>
