@@ -10,6 +10,7 @@ class Events extends BaseController
     public function __construct(){
         $this->eventModel = new EventModel;
     }
+    
     public function index()
 	{
         $eventData = $this->eventModel->findAll();

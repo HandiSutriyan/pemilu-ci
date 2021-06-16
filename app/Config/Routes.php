@@ -41,6 +41,8 @@ $routes->delete('/admin/events/(:num)', 'Admin/Events::delete/$1');
 $routes->get('/admin/events/(:segment)', 'Admin\Events::detail/$1');
 $routes->get('/admin/events/update/(:num)', 'Admin\Events::update/$1');
 
+$routes->resource('/api/candidate', ['controller' =>'Api\Candidate']);
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
