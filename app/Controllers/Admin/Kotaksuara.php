@@ -7,6 +7,10 @@ class Kotaksuara extends BaseController
 {
 	public function index()
 	{
-		return view('pages/result/index');
+		
+		$data =[
+            'title' => 'Perolehan Suara Masuk',
+        ];
+		return view('pages/result/index', $data);
     }
 }

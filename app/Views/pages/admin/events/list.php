@@ -20,12 +20,16 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Pemilu FMKK 2021</td>
-                        <td>Pemilihan Ketua BPH FMKK 2021/2022</td>
-                        <td>2021-06-13 18:08:41</td>
-                        <td>2021-06-14 18:08:41</td>
+                    <?php
+                        $i=1;
+                        foreach($data_event as $d):
+                    ?>
+                        <tr>
+                        <th scope="row"><?= $i ?></th>
+                        <td><?= $d["name"] ?></td>
+                        <td><?= $d["desc"] ?></td>
+                        <td><?= $d["event_start"] ?></td>
+                        <td><?= $d["event_stop"] ?></td>
                         <td>
                             <a href='/admin/events/update'>
                                 <button type="button" class="btn btn-info btn-sm">
@@ -39,7 +43,10 @@
                             </a>
                         </td>
                     </tr>
-                    
+                    <?php
+                        $i++;
+                        endforeach
+                    ?>
                     </tbody>
                 </table>
             </div>

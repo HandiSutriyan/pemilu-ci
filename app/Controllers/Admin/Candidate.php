@@ -7,16 +7,28 @@ class Candidate extends BaseController
 {
 	public function index()
 	{
-		return view('pages/admin/calon/index');
+		
+		$data =[
+            'title' => 'Data Calon',
+        ];
+		return view('pages/admin/calon/index', $data);
     }
     
     public function create()
 	{
-		return view('pages/admin/calon/create');
+		
+		$data =[
+            'title' => 'Tambah Calon',
+        ];
+		return view('pages/admin/calon/create', $data);
     }
     
     public function update()
 	{
-		return view('pages/admin/calon/update');
+		
+		$data =[
+            'title' => 'Ubah Data Calon',
+        ];
+		return view('pages/admin/calon/update', $data);
 	}
 }
