@@ -9,8 +9,9 @@
             style="width: 100%; height: 36px"
         >
             <option selected disabled value="">Pilih Acara</option>
-            <option value="AK">Alaska</option>
-            <option value="HI">Hawaii</option>
+            <?php foreach($data_event as $de): ?>
+                <option value="<?= $de['event_id'] ?>" onclick="loadCalonData(<?= $de['event_id'] ?>);"><?= $de['name'] ?></option>
+            <?php endforeach ?>
         </select>
         </div>
     </div>
@@ -18,7 +19,7 @@
         <div class="col-md-12 mt-4">
             <div class="card">
                 <div class="card-body">
-                <h4>Tambah Daftar Pemilih Tetap</h4>
+                <h4>Tambah Daftar Pemilih Tetap </h4>
                     <?= csrf_field() ?>
                     <form class="form-horizontal">
                         <div class="form-group row">
@@ -61,70 +62,25 @@
                                     <table id="zero_config" class="table table-striped table-bordered">
                                         <thead>
                                             <tr>
-                                                <th>No</th>
                                                 <th>Nama</th>
                                                 <th>Username</th>
                                                 <th>Token</th>
                                                 <th>PTK</th>
                                                 <th>Angkatan</th>
+                                                <th>Status</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>System Architect</td>
-                                                <td>Edinburgh</td>
-                                                <td>61</td>
-                                                <td>2011/04/25</td>
-                                                <td>$320,800</td>
-                                                <td>
-                                                    <a href='#'>
-                                                        <button type="button" class="btn btn-danger btn-sm">
-                                                        <i class="fas fa-trash-alt"></i>
-                                                        </button>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>System Architect</td>
-                                                <td>Edinburgh</td>
-                                                <td>61</td>
-                                                <td>2011/04/25</td>
-                                                <td>$320,800</td>
-                                                <td>
-                                                    <a href='#'>
-                                                        <button type="button" class="btn btn-danger btn-sm">
-                                                        <i class="fas fa-trash-alt"></i>
-                                                        </button>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>System Architect</td>
-                                                <td>Edinburgh</td>
-                                                <td>61</td>
-                                                <td>2011/04/25</td>
-                                                <td>$320,800</td>
-                                                <td>
-                                                    <a href='#'>
-                                                        <button type="button" class="btn btn-danger btn-sm">
-                                                        <i class="fas fa-trash-alt"></i>
-                                                        </button>
-                                                    </a>
-                                                </td>
-                                            </tr>
+                                        <tbody id="data-table">
                                         </tbody>
                                         <tfoot>
                                             <tr>
-                                                <th>No</th>
                                                 <th>Nama</th>
                                                 <th>Username</th>
                                                 <th>Token</th>
                                                 <th>PTK</th>
                                                 <th>Angkatan</th>
+                                                <th>Status</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </tfoot>
@@ -142,4 +98,55 @@
     </div>
 </div>
 
+<?= $this->endSection() ?>
+
+<?= $this->section('script') ?>
+<script>
+    function setData(item){
+        let html=`
+        <tr>
+            <td>${item.name}</td>
+            <td>${item.username}</td>
+            <td>${item.user_password}</td>
+            <td>${item.ptk}</td>
+            <td>${item.angkatan}</td>
+            <td>${item.vote_status}</td>
+            <td>
+                <a href='#'><button type="button" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button></a>
+            </td>
+        </tr>
+        `;
+        $("#data-table").prepend(html);
+    }
+    function clearTable(){
+        let template = `
+        <tr>
+            <td colspan="7" class="text-center">Belum ada data</td>
+        </tr>
+        `;
+        $("#data-table").html(template);
+    }
+    function loadCalonData(id){
+        $.ajax({
+            url:"http://pemilu-fmkk.test/api/dpt/"+id,
+            type:'get',
+            dataType:'json',
+            success:function(data){
+                let dataResponse = data;
+                clearTable();
+                dataResponse.forEach(setData)
+                //console.log(dataResponse);
+            },
+            error: function (xhr,ajaxOptions, thrownError){
+                console.log(thrownError);
+                clearTable();
+                //console.log(dataResponse);
+            }
+
+        });
+    }
+    $(document).ready(function(){
+        clearTable();
+    });
+</script>
 <?= $this->endSection() ?>
