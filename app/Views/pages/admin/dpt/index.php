@@ -7,7 +7,10 @@
             <div class="card">
                 <div class="card-body">
                 <h4>Tambah Daftar Pemilih Tetap </h4>
-                    <form class="form-horizontal" method="post" action="pemilih/create" enctype="multipart/form-data">
+                <?php if(session()->getFlashdata('msg')):?>
+                    <div class="alert alert-info"><?= session()->getFlashdata('msg') ?></div>
+                <?php endif;?>
+                    <form class="form-horizontal" method="post" action="pemilih/proses_import" enctype="multipart/form-data">
                     <?= csrf_field() ?>
                         <div class="form-group row">
                             <label class="col-sm-2 text-left control-label col-form-label">Acara</label>
@@ -16,6 +19,7 @@
                                     class="select2 form-control custom-select"
                                     style="width: 100%; height: 36px"
                                     name="event_id"
+                                    required
                                 >
                                     <option selected disabled value="">Pilih Acara</option>
                                     <?php foreach($data_event as $de): ?>
@@ -43,6 +47,11 @@
                                             <div class="invalid-feedback">
                                             Example invalid custom file feedback
                                             </div>
+                                            <?php if($validation->hasError('filedpt')): ?>
+                                            <div class="alert alert-danger" role="alert">
+                                                <?= $validation->getError('filedpt'); ?>
+                                            </div>
+							<?php endif; ?>
                                     </div>
                                 </div>
                             </div>
@@ -124,13 +133,16 @@
             <td>${item.angkatan}</td>
             <td>${item.vote_status}</td>
             <td>
-                <a href='#'><button type="button" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button></a>
+                <button type="button" class="btn btn-danger btn-sm" onclick="hapusData(${item.pemilih_id})"><i class="fas fa-trash-alt"></i></button>
             </td>
         </tr>
         `;
         $("#data-table").prepend(html);
     }
     function clearTable(){
+        $("#data-table").empty();
+    }
+    function emptyTable(){
         let template = `
         <tr>
             <td colspan="7" class="text-center">Belum ada data</td>
@@ -140,7 +152,7 @@
     }
     function loadCalonData(id){
         $.ajax({
-            url:"http://pemilu-fmkk.test/api/dpt/"+id,
+            url:"http://pemilu-fmkk.test/admin/api/dpt/"+id,
             type:'get',
             dataType:'json',
             success:function(data){
@@ -151,6 +163,24 @@
             },
             error: function (xhr,ajaxOptions, thrownError){
                 console.log(thrownError);
+                emptyTable();
+                //console.log(dataResponse);
+            }
+
+        });
+    }
+    function hapusData(id){
+        $.ajax({
+            url:"http://pemilu-fmkk.test/admin/api/dpt/"+id,
+            type:'delete',
+            dataType:'json',
+            success:function(data){
+                let dataResponse = data;
+                console.log(dataResponse);
+                loadCalonData(id);
+            },
+            error: function (xhr,ajaxOptions, thrownError){
+                console.log(thrownError);
                 clearTable();
                 //console.log(dataResponse);
             }
@@ -158,7 +188,7 @@
         });
     }
     $(document).ready(function(){
-        clearTable();
+        emptyTable();
     });
 </script>
 <?= $this->endSection() ?>

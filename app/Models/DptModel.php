@@ -9,7 +9,7 @@ class DptModel extends Model
 	protected $table = 'tbl_dpt';
 	protected $primaryKey = 'pemilih_id';
 	protected $useTimestamps = true;
-	protected $allowedFields = ['username','name', 'ptk','angkatan','user_password','vote_status'];
+	protected $allowedFields = ['event_id','username','name', 'ptk','angkatan','user_password','vote_status'];
 
 	public function getPemilih($id = false)
     {

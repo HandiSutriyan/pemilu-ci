@@ -23,5 +23,10 @@ class Dpt extends ResourceController
         }
     }
 
+    public function delete($id=NULL){
+        $this->dptModel->delete($id);
+        return $this->respondDeleted(['id' => $id]);
+    }
+
     // ...
 }
