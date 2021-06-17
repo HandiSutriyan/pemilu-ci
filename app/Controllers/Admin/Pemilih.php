@@ -2,6 +2,7 @@
 
 namespace App\Controllers\Admin;
 use App\Controllers\BaseController;
+
 use App\Models\EventModel;
 
 class Pemilih extends BaseController
@@ -24,7 +25,13 @@ class Pemilih extends BaseController
     
     public function create()
 	{
-		//return view('pages/admin/dpt/create');
+		
+		$file = $this->request->getFile('filedpt');
+		$dummydpt = array();
+
+
+		dd($dummydpt);
+		session()->setFlashdata('message','Berhasil import excel');
     }
     
     public function update()

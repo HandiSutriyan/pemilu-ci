@@ -3,33 +3,36 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-7">
-        <select
-            class="select2 form-control custom-select"
-            style="width: 100%; height: 36px"
-        >
-            <option selected disabled value="">Pilih Acara</option>
-            <?php foreach($data_event as $de): ?>
-                <option value="<?= $de['event_id'] ?>" onclick="loadCalonData(<?= $de['event_id'] ?>);"><?= $de['name'] ?></option>
-            <?php endforeach ?>
-        </select>
-        </div>
-    </div>
-    <div class="row">
         <div class="col-md-12 mt-4">
             <div class="card">
                 <div class="card-body">
                 <h4>Tambah Daftar Pemilih Tetap </h4>
+                    <form class="form-horizontal" method="post" action="pemilih/create" enctype="multipart/form-data">
                     <?= csrf_field() ?>
-                    <form class="form-horizontal">
                         <div class="form-group row">
-                                    <label class="col-sm-3 text-left control-label col-form-label">File Upload(.xls)</label>
-                                    <div class="col-md-12">
+                            <label class="col-sm-2 text-left control-label col-form-label">Acara</label>
+                            <div class="col-md-10">
+                                <select
+                                    class="select2 form-control custom-select"
+                                    style="width: 100%; height: 36px"
+                                    name="event_id"
+                                >
+                                    <option selected disabled value="">Pilih Acara</option>
+                                    <?php foreach($data_event as $de): ?>
+                                        <option value="<?= $de['event_id'] ?>"><?= $de['name'] ?></option>
+                                    <?php endforeach ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                                    <label class="col-sm-2 text-left control-label col-form-label">File Upload(.xls)</label>
+                                    <div class="col-md-10">
                                         <div class="custom-file">
                                             <input
                                             type="file"
                                             class="custom-file-input"
                                             id="validatedCustomFile"
+                                            name="filedpt"
                                             required
                                             />
                                             <label
@@ -58,7 +61,16 @@
             <div class="card">
                 <div class="card-body">
                                 <h5 class="card-title">Daftar Pemilih Tetap</h5>
-                                <div class="table-responsive">
+                                <select
+                                    class="select2 form-control custom-select"
+                                    style="width: 100%; height: 36px"
+                                >
+                                    <option selected disabled value="">Pilih Acara</option>
+                                    <?php foreach($data_event as $de): ?>
+                                        <option value="<?= $de['event_id'] ?>" onclick="loadCalonData(<?= $de['event_id'] ?>);"><?= $de['name'] ?></option>
+                                    <?php endforeach ?>
+                                </select>
+                                <div class="table-responsive mt-3">
                                     <table id="zero_config" class="table table-striped table-bordered">
                                         <thead>
                                             <tr>
