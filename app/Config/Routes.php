@@ -47,7 +47,8 @@ $routes->delete('/admin/candidate/(:num)', 'Admin\Candidate::delete/$1');
 
 $routes->resource('/admin/api/candidate', ['controller' =>'Api\Candidate']);
 $routes->resource('/admin/api/dpt', ['controller' =>'Api\Dpt']);
-//$routes->resource('/api/dpt/status/(:num)', ['controller' =>'Api\Dpt::status/$1']);
+$routes->resource('/admin/api/kotaksuara', ['controller' =>'Api\Kotaksuara']);
+
 
 /*
  * --------------------------------------------------------------------

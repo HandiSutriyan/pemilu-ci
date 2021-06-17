@@ -19,7 +19,7 @@ class DptModel extends Model
             return $this->getWhere(['event_id' => $id])->getResult();
 		}  
 	}
-	public function getPemilihByStatus($v_status){
-    	return $this->getWhere(['vote_status'=> $v_status])->getResult();
+	public function getPemilihByStatus($v_status,$event_id){
+    	return $this->where(['vote_status'=> $v_status, 'event_id'=>$event_id])->countAllResults();
     }
 }
