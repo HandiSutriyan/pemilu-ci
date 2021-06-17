@@ -19,4 +19,8 @@ class CalonModel extends Model
             return $this->getWhere(['event_id' => $id])->getResult();
         }  
     }
+
+    public function getCalonById($id){
+    	return $this->where(['calon_id'=> $id])->first();
+    }
 }

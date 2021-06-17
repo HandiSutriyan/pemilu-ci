@@ -4,39 +4,45 @@
     <div class="row">
         <div class="col-md-12 ">
             <div class="card">
+                <form class="form-horizontal" action="save" method="post" enctype="multipart/form-data">
                 <?= csrf_field() ?>
-                <form class="form-horizontal">
                     <div class="card-body">
                         <h4 class="card-title">Tambah Calon</h4>
+                        <?php if(session()->getFlashdata('msg')):?>
+                            <div class="alert alert-info"><?= session()->getFlashdata('msg') ?></div>
+                        <?php endif;?>
                         <div class="form-group row">
                             <label for="fname" class="col-sm-3 text-right control-label col-form-label">Acara</label>
                             <div class="col-sm-9">
                                 <select
                                     class="select2 form-control custom-select"
                                     style="width: 100%; height: 36px"
+                                    name = "event_id"
+                                    required
                                 >
                                     <option selected disabled value="">Pilih Acara</option>
-                                    <option value="AK">Alaska</option>
-                                    <option value="HI">Hawaii</option>
+                                    <?php foreach($data_event as $de): ?>
+                                        <option value="<?= $de['event_id'] ?>"><?= $de['name'] ?></option>
+                                    <?php endforeach ?>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="fname" class="col-sm-3 text-right control-label col-form-label">Nama</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="fname" placeholder="Nama acara pemilihan" value="Nama acara pemilihan">
+                                <input type="text" class="form-control" name = "name" id="fname" placeholder="Nama acara pemilihan">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="fname" class="col-sm-3 text-right control-label col-form-label">Asal PTK</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="fname" placeholder="Nama acara pemilihan" value="Nama acara pemilihan">
+                                <input type="text" class="form-control" name = "ptk" id="fname" placeholder="Asal PTK">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="fname" class="col-sm-3 text-right control-label col-form-label">Angkatan</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="fname" placeholder="Nama acara pemilihan" value="Nama acara pemilihan">
+                                <input type="text" class="form-control" name = "angkatan" id="fname" placeholder="Angkatan (contoh: 2020)">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -47,22 +53,27 @@
                                     type="file"
                                     class="custom-file-input"
                                     id="validatedCustomFile"
-                                    required
+                                    name = "picture"
                                     />
                                     <label
                                     class="custom-file-label"
                                     for="validatedCustomFile"
-                                    >Choose file...</label
+                                    >Pilih file...</label
                                     >
                                     <div class="invalid-feedback">
                                     Example invalid custom file feedback
                                     </div>
                                 </div>
                             </div>
+                            <?php if($validation->hasError('picture')): ?>
+								<div class="alert alert-danger" role="alert">
+									  <?= $validation->getError('picture'); ?>
+								</div>
+							<?php endif; ?>
                         </div>
                         <div class="border-top">
                             <div class="card-body">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <input type="submit" class="btn btn-primary" value="Submit">
                                 <a href="/admin/candidate"><button type="button" class="btn btn-outline-primary">Kembali</button></a>
                             </div>
                         </div>

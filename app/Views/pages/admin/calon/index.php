@@ -18,6 +18,9 @@
     <div class="row">
         <div class="col-md-12 mt-4">
             <h4>Daftar Calon</h4>
+            <?php if(session()->getFlashdata('msg')):?>
+                <div class="alert alert-info"><?= session()->getFlashdata('msg') ?></div>
+            <?php endif;?>
         </div>
     </div>
     <div class="row el-element-overlay" id="card-calon">
@@ -42,10 +45,16 @@
         <div class="col-lg-3 col-md-6">
             <div class="card">
                 <div class="el-card-item">
-                    <div class="el-card-avatar el-overlay-1"> <img src="${base_url+'assets/images/users/'+item.picture}" alt="user" />
+                    <div class="el-card-avatar el-overlay-1"> <img src="${base_url+'uploads/img/'+item.picture}" alt="user" />
                         <div class="el-overlay">
                             <ul class="list-style-none el-info">
-                                <li class="el-item"><a class="btn default btn-outline el-link" href="candidate/update" ><i class="fas fa-cogs"></i>Ubah</a></li>
+                            <li class="el-item"><a href="candidate/${item.calon_id}" > <button class="btn btn-outline-info"><i class="fas fa-cog"></i></button></a></li>
+                                    <!-- SPOOFING -->
+                                    <form method="post" class="d-inline" action="candidate/${item.calon_id}" >
+                                        <?= csrf_field() ?>
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <li class="el-item"><button class="btn btn-outline-danger" type="submit" onclick="return confirm('Apakah Anda yakin akan menghapus ${item.name}?');"><i class="fas fa-trash-alt"></i></button> </li>
+                                    </form>
                             </ul>
                         </div>
                     </div>
@@ -78,6 +87,7 @@
             dataType:'json',
             success:function(data){
                 let dataResponse = data;
+                clearCard();
                 dataResponse.forEach(setCard)
                 console.log(dataResponse);
             },
