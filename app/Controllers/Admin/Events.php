@@ -29,11 +29,13 @@ class Events extends BaseController
     }
     public function save(){
         $session = session();
+        $mulai = $newDate = date("Y-m-d H:i:s", strtotime($this->request->getVar('start').'0')); 
+        $selesai = $newDate = date("Y-m-d H:i:s", strtotime($this->request->getVar('stop').'0')); 
         $save = [
             'name'=> $this->request->getVar('name'),
             'desc'=> $this->request->getVar('desc'),
-            'event_start'=> $this->request->getVar('start').'0',
-            'event_stop'=> $this->request->getVar('stop').'0',
+            'event_start'=> $mulai,
+            'event_stop'=> $selesai,
             'created_by'=> $session->get('user_id'),
         ];
         //dd($save);
@@ -54,17 +56,19 @@ class Events extends BaseController
 
     public function update($id){
         $session = session();
+        $mulai = $newDate = date("Y-m-d H:i:s", strtotime($this->request->getVar('start').'0')); 
+        $selesai = $newDate = date("Y-m-d H:i:s", strtotime($this->request->getVar('stop').'0')); 
         $edit = [
 			'name'=> $this->request->getVar('name'),
             'desc'=> $this->request->getVar('desc'),
-            'event_start'=> $this->request->getVar('start').'0',
-            'events_stop'=> $this->request->getVar('stop').'0',
+            'event_start'=> $mulai,
+            'event_stop'=> $selesai,
             'created_by'=> $session->get('user_id'),
-		];
+        ];
         //dd($edit);
 		$this->eventModel->update(['event_id'=>$id],$edit);
 		session()->setFlashdata('msg','Data berhasil diubah');
-		return redirect()->to('/admin/events/'.$id);
+		return redirect()->to('/admin/events');
     }
 
     public function delete($id){
