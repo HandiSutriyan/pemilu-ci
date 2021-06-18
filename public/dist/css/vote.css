@@ -1,0 +1,51 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+body {
+  background-color: #141432;
+}
+.empty-3-3 {
+  padding: 10px;
+}
+.empty-3-3 .main-img {
+  width: 83.333333%;
+  margin: auto;
+  margin-bottom: 2.5rem;
+  object-fit: cover;
+  object-position: center;
+  height: 280px;
+}
+.empty-3-3 .title-text {
+  font: 600 1.875rem/2.25rem Poppins, sans-serif;
+  color: #fff;
+  letter-spacing: 0.025em;
+  margin-bottom: 5px;
+}
+.empty-3-3 .caption-text {
+  margin-bottom: 3rem;
+  color: #e2e0e0;
+  font-size: 1rem;
+  letter-spacing: 0.025em;
+  line-height: 1.75rem;
+}
+.empty-3-3 .btn-set {
+  font: 600 1.125rem/1.75rem Poppins, sans-serif;
+  padding: 1rem 2rem;
+  border-radius: 0.75rem;
+  background-color: #ff7c57;
+  transition: 0.3s;
+}
+.empty-3-3 .btn-set:hover {
+  background-color: #ff9779;
+  transition: 0.3s;
+}
+.card {
+  background-color: #34495e;
+}
+@media (min-width: 576px) {
+  .empty-3-3 {
+    padding: 2rem;
+  }
+  .empty-3-3 .main-img {
+    max-width: 80%;
+    margin: auto;
+  }
+}
