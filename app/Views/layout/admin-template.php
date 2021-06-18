@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href=<?= base_url("assets/images/favicon.png") ?>>
+    <link rel="icon" type="image/ico" sizes="16x16" href=<?= base_url("assets/images/favicon.ico") ?>>
     <title><?= SITE_NAME."-Dashboard Admin"?></title>
     <!-- Custom CSS -->
     <link href=<?= base_url("assets/libs/flot/css/float-chart.css")?> rel="stylesheet">

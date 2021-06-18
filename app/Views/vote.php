@@ -3,7 +3,8 @@
     <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Elements by BuildWith Angga</title>
+      <title><?= SITE_NAME ?>-Bilik Suara</title>
+      <link rel="icon" type="image/ico" sizes="16x16" href=<?= base_url("assets/images/favicon.ico") ?>>
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
       <link href=<?= base_url("dist/css/vote.css")?> rel="stylesheet">
     </head>

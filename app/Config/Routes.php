@@ -36,6 +36,7 @@ $routes->get('/', 'Home::index');
 $routes->get('/logout', 'Login::logout');
 $routes->get('/admin', 'Admin/Dashboard::index');
 $routes->get('/vote/(:num)', 'Vote::index/$1');
+$routes->delete('/greetings/timeover/(:num)', 'Greetings::timeover/$1');
 
 $routes->get('/admin/events/create', 'Admin/Events::create');
 $routes->delete('/admin/events/(:num)', 'Admin/Events::delete/$1');
