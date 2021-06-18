@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Controllers;
+use CodeIgniter\I18n\Time;
+
 use App\Models\EventModel;
 
 class Greetings extends BaseController
@@ -19,11 +21,24 @@ class Greetings extends BaseController
     }
     public function timeover($id=NULL){
       $event = $this->eventModel->where(['event_id' => $id])->first(); 
+      //dd($id);
       if($event){
+        $now = strtotime(Time::now('Asia/Jakarta'));
+        $event_start = strtotime($event['event_start']);
+        $event_stop = strtotime($event['event_stop']);
+        $return = 'errors/not-found';
+
+        //CEK WAKTU
+        if($event_start > $now){
+          $return = 'errors/soon';
+        }else if($event_start < $now && $event_stop > $now) {
+          $return = 'errors/timeover';
+        }
         $data = [
           'event'=>$event
         ];
-        return view('errors/timeover',$data);
+        return view($return,$data);
+
       }else{
         return view('errors/not-found');
       }

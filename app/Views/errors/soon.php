@@ -57,11 +57,11 @@
     </style>
 
     <div class="empty-2-3 container mx-auto d-flex align-items-center justify-content-center flex-column" style="font-family: 'Poppins', sans-serif;">    
-        <img class="img-fluid mb-3" src="<?= base_url('assets/images/time-over.png') ?>" alt="" width="300">        
+        <img class="img-fluid mb-3" src="<?= base_url('assets/images/clock.png') ?>" alt="" width="200">        
         <div class="text-center w-100">
-            <h1 class="title-text text-white">Yah, waktu voting sudah habis</h1>
+            <h1 class="title-text text-white">Oops, Belum dimulai</h1>
             <p class="title-caption">
-                Waktu voting berakhir berlangsung dari <b><?= date("d F Y H:i:s", strtotime($event['event_start'])); ?></b> WIB sampai <b><?= date("d F Y H:i:s", strtotime($event['event_stop'])); ?> </b><br class="d-sm-block d-none"> Terimakasih partisipasinya :).
+                Waktu voting akan berlangsung dari <b><?= date("d F Y H:i:s", strtotime($event['event_start'])); ?></b> WIB sampai <b><?= date("d F Y H:i:s", strtotime($event['event_stop'])); ?> </b><br class="d-sm-block d-none"> Terimakasih partisipasinya :).
             </p>
             <div class="d-flex justify-content-center">
                 <a href="/logout">

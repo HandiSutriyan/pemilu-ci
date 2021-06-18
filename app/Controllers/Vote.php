@@ -48,7 +48,7 @@ class Vote extends BaseController
 		}else if($cekData['vote_status']==1) {
 			return redirect()->to('/greetings/voted');
 		}else if($is_active == false) {
-			return redirect()->to('/greetings/timeover');
+			return redirect()->to('/greetings/timeover/'.$id);
 		}else{
 			return redirect()->to('/greetings/forbidden');
 		}
