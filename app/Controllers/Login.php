@@ -36,7 +36,7 @@ class Login extends BaseController
                 $redirect = '/admin';
             }else{
                 $id = $data['pemilih_id'];
-                $redirect = '/vote';
+                $redirect = '/vote/'.$data['event_id'];
             }
 
             if($verify_pass){

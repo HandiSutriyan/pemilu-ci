@@ -25,14 +25,17 @@
                     <tbody>
                     <?php
                         $i=1;
+                        $wib = $gmtTimezone = new DateTimeZone('Asia/Jakarta');
                         foreach($data_event as $d):
+                            $start = new DateTime($d["event_start"], $wib);
+                            $stop = new DateTime($d["event_stop"], $wib);
                     ?>
                         <tr>
                         <th scope="row"><?= $i ?></th>
                         <td><?= $d["name"] ?></td>
                         <td><?= $d["desc"] ?></td>
-                        <td><?= $d["event_start"] ?></td>
-                        <td><?= $d["event_stop"] ?></td>
+                        <td><?=  $start->format('Y-m-d H:i:s') ?></td>
+                        <td><?=  $stop->format('Y-m-d H:i:s')  ?></td>
                         <td>
                             <!-- SPOOFING -->
 							<form method="post" class="d-inline" action="events/delete/<?= $d['event_id'] ?>" >
