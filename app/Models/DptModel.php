@@ -9,5 +9,17 @@ class DptModel extends Model
 	protected $table = 'tbl_dpt';
 	protected $primaryKey = 'pemilih_id';
 	protected $useTimestamps = true;
-    protected $allowedFields = ['username','name', 'ptk','angkatan','user_password','vote_status'];
+	protected $allowedFields = ['event_id','username','name', 'ptk','angkatan','user_password','vote_status'];
+
+	public function getPemilih($id = false)
+    {
+        if($id === false){
+            return $this->findAll();
+        } else {
+            return $this->getWhere(['event_id' => $id])->getResult();
+		}  
+	}
+	public function getPemilihByStatus($v_status,$event_id){
+    	return $this->where(['vote_status'=> $v_status, 'event_id'=>$event_id])->countAllResults();
+    }
 }

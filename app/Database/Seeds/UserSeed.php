@@ -10,13 +10,9 @@ class UserSeed extends Seeder
 	public function run()
 	{
 		$data = [
-<<<<<<< HEAD
-			'user_name' => 'Admin',
-=======
 			'username' => 'Admin',
->>>>>>> dev
 			'user_email'    => 'pemilu@fmkk.web.id',
-			'user_role' => 'admin',
+			'user_role' => 'fmk20!^',
 			'user_password' => password_hash('admin', PASSWORD_DEFAULT),
 			'created_at' => Time::now(),
 			'updated_at' => Time::now()

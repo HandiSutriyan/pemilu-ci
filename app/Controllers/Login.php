@@ -33,16 +33,19 @@ class Login extends BaseController
 
             if($is_user){
                 $id = $data['user_id'];
+                $nama = "Admin";
                 $redirect = '/admin';
             }else{
                 $id = $data['pemilih_id'];
-                $redirect = '/vote';
+                $nama = $data['name'];
+                $redirect = '/vote/'.$data['event_id'];
             }
 
             if($verify_pass){
                 $ses_data = [
                     'user_id'       => $id,
-                    'user_name'     => $data['username'],
+                    'username'     => $data['username'],
+                    'user_name'     => $nama,
                     'logged_in'     => TRUE
                 ];
                 $session->set($ses_data);

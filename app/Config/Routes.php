@@ -34,13 +34,23 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 $routes->get('/logout', 'Login::logout');
-<<<<<<< HEAD
-$routes->get('/vote', 'BilikSuara::index');
-$routes->get('/admin/login', 'Admin/Login::index');
-
-=======
 $routes->get('/admin', 'Admin/Dashboard::index');
->>>>>>> dev
+$routes->get('/vote/(:num)', 'Vote::index/$1');
+$routes->delete('/greetings/timeover/(:num)', 'Greetings::timeover/$1');
+
+$routes->get('/admin/events/create', 'Admin/Events::create');
+$routes->delete('/admin/events/(:num)', 'Admin/Events::delete/$1');
+$routes->get('/admin/events/(:segment)', 'Admin\Events::detail/$1');
+$routes->get('/admin/events/update/(:num)', 'Admin\Events::update/$1');
+
+$routes->get('/admin/candidate/(:num)', 'Admin\Candidate::detail/$1');
+$routes->get('/admin/candidate/update/(:num)', 'Admin\Candidate::update/$1');
+$routes->delete('/admin/candidate/(:num)', 'Admin\Candidate::delete/$1');
+
+$routes->resource('/admin/api/candidate', ['controller' =>'Api\Candidate']);
+$routes->resource('/admin/api/dpt', ['controller' =>'Api\Dpt']);
+$routes->resource('/admin/api/kotaksuara', ['controller' =>'Api\Kotaksuara']);
+
 
 /*
  * --------------------------------------------------------------------
