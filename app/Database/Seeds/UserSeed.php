@@ -12,8 +12,8 @@ class UserSeed extends Seeder
 		$data = [
 			'username' => 'Admin',
 			'user_email'    => 'pemilu@fmkk.web.id',
-			'user_role' => 'fmk20!^',
-			'user_password' => password_hash('admin', PASSWORD_DEFAULT),
+			'user_role' => 'admin',
+			'user_password' => password_hash('fmk20!^', PASSWORD_DEFAULT),
 			'created_at' => Time::now(),
 			'updated_at' => Time::now()
 		];
