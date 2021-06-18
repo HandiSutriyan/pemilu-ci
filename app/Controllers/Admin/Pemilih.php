@@ -68,7 +68,7 @@ class Pemilih extends BaseController
 				"name"     => $name,
 				"ptk" => $ptk,
 				"angkatan" => $angkatan,
-				"user_password" => $password
+				"user_password" => password_hash($password, PASSWORD_DEFAULT),
 			];
 			array_push($dummy,$datas);
 		}
