@@ -78,7 +78,6 @@
                     <input type="password" name="user_password" class="form-control" id="InputForPassword">
                 </div>
                 <button type="submit" class="btn btn-primary">Login</button>
-                <a href="/" class="btn btn-secondary">Kembali</a>
             </form>
         </div>
     </div>
