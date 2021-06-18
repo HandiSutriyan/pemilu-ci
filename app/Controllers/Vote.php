@@ -29,15 +29,15 @@ class Vote extends BaseController
 			$event_start = strtotime($cekwaktu['event_start']);
 			$event_stop = strtotime($cekwaktu['event_stop']);
 			if($event_start < $now && $event_stop > $now){
-				$is_active = 1;
+				$is_active = true;
 			}else {
-				$is_active = 0;
+				$is_active = false;
 			}
-			echo $is_active;
+		} else {
+			return redirect()->to('/greetings/notfound');
 		}
-		die;
 	
-		if($cekData['event_id'] == $id && $cekData['vote_status']==0){
+		if($cekData['event_id'] == $id && $cekData['vote_status']==0 && $is_active == true){
 			$calonData = $this->calonModel->where(['event_id' => $id])->findAll();
 			//dd($calonData);
 			$data = [
@@ -45,8 +45,12 @@ class Vote extends BaseController
 				'session'=> $session
 			];
 			return view('vote', $data);
-		}else {
-			return view('errors/zonk');
+		}else if($cekData['vote_status']==1) {
+			return redirect()->to('/greetings/voted');
+		}else if($is_active == false) {
+			return redirect()->to('/greetings/timeover');
+		}else{
+			return redirect()->to('/greetings/forbidden');
 		}
 	}
 
@@ -62,6 +66,6 @@ class Vote extends BaseController
 		$this->suaraModel->save($suara);
 		$this->dptModel->update(['pemilih_id'=>$pemilih_id],['vote_status'=>1]);
 		session()->setFlashdata('msg','Data berhasil diubah');
-		return redirect()->to('/');
+		return redirect()->to('/greetings/voted');
 	}
 }

@@ -42,7 +42,8 @@ class Login extends BaseController
             if($verify_pass){
                 $ses_data = [
                     'user_id'       => $id,
-                    'user_name'     => $data['username'],
+                    'username'     => $data['username'],
+                    'user_name'     => $data['name'],
                     'logged_in'     => TRUE
                 ];
                 $session->set($ses_data);
