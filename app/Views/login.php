@@ -70,7 +70,7 @@
             <form action="/login/auth" method="post">
             <?= csrf_field() ?>
                 <div class="mb-3">
-                    <label for="InputForEmail" class="form-label text-white">Email address</label>
+                    <label for="InputForEmail" class="form-label text-white">Username</label>
                     <input type="text" name="user_name" class="form-control" id="InputForEmail">
                 </div>
                 <div class="mb-3">
