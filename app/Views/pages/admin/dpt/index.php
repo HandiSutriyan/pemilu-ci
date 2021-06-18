@@ -152,7 +152,7 @@
     }
     function loadCalonData(id){
         $.ajax({
-            url:"http://pemilu-fmkk.test/admin/api/dpt/"+id,
+            url:"http://pemilu21.fmkk.web.id/admin/api/dpt/"+id,
             type:'get',
             dataType:'json',
             success:function(data){
@@ -171,7 +171,7 @@
     }
     function hapusData(id){
         $.ajax({
-            url:"http://pemilu-fmkk.test/admin/api/dpt/"+id,
+            url:"http://pemilu21.fmkk.web.id/admin/api/dpt/"+id,
             type:'delete',
             dataType:'json',
             success:function(data){

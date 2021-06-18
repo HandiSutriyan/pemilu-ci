@@ -82,7 +82,7 @@
     }
     function loadCalonData(id){
         $.ajax({
-            url:"http://pemilu-fmkk.test/admin/api/candidate/"+id,
+            url:"http://pemilu21.fmkk.web.id/admin/api/candidate/"+id,
             type:'get',
             dataType:'json',
             success:function(data){

@@ -58,7 +58,7 @@
 
     function loadDataHasil(id){
         $.ajax({
-            url:"http://pemilu-fmkk.test/admin/api/kotaksuara/"+id,
+            url:"http://pemilu21.fmkk.web.id/admin/api/kotaksuara/"+id,
             type:'get',
             dataType:'json',
             success:function(data){
