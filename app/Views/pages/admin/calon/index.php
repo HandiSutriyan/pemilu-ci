@@ -39,7 +39,7 @@
 
 <?= $this->section('script') ?>
 <script>
-    const base_url = 'http://pemilu-fmkk.test/';
+    const base_url = 'http://pemilu21.fmkk.web.id/';
     function setCard(item){
         let card =`
         <div class="col-lg-3 col-md-6">
