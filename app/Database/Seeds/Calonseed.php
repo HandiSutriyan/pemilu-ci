@@ -15,7 +15,7 @@ class Calonseed extends Seeder
 				'name' => 'Surya',
 				'ptk' => 'Politeknik',
 				'angkatan' => '2020',
-				'picture' => 'surya.jpg',
+				'picture' => '2.jpg',
 				'created_at' => Time::now(),
 				'updated_at' => Time::now()
 			],
@@ -24,7 +24,7 @@ class Calonseed extends Seeder
 				'name' => 'Karya',
 				'ptk' => 'Politeknik',
 				'angkatan' => '2019',
-				'picture' => 'surya.jpg',
+				'picture' => '3.jpg',
 				'created_at' => Time::now(),
 				'updated_at' => Time::now()
 			],
@@ -33,7 +33,7 @@ class Calonseed extends Seeder
 				'name' => 'Budi',
 				'ptk' => 'Politeknik',
 				'angkatan' => '2020',
-				'picture' => 'surya.jpg',
+				'picture' => '4.jpg',
 				'created_at' => Time::now(),
 				'updated_at' => Time::now()
 			],
